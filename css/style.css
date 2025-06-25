@@ -1,0 +1,12 @@
+/* Police décriture */
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase:wght@400;700&display=swap');
+
+/* La même police d'écriture pour toute la page */
+body {
+  font-family: Delius;
+}
+
+/* Taille du texte pour le titre de la page */
+body header h1 {
+  font-size: 60px;
+}
