@@ -10,3 +10,7 @@ body {
 body header h1 {
   font-size: 60px;
 }
+
+main div div button {
+  font-size: 30px;
+}
