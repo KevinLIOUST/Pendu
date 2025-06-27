@@ -64,8 +64,9 @@ let nbLettresManquantes = 0;
 function utiliserLettre(lettre) {
   for (let i = 0; i < motAchercher.length; i++) {
     if (motAchercher[i] === lettre) {
-        console.log(typeof motArefaire[i]);
-      motArefaire[i] = lettre;
+      let newTabChaine = motArefaire.split(""); // Convertir la chaîne en tableau
+      newTabChaine[i] = lettre; // Modifier la lettre à l'index donné
+      let nouvelleChaine = newTabChaine.join(""); // Reconvertir en chaîne
       console.log(lettre);
       console.log(motAchercher[i]);
       console.log(motArefaire[i]);
@@ -74,7 +75,7 @@ function utiliserLettre(lettre) {
     }
   }
 
-  document.getElementById("motAchercher").innerText = motArefaire;
+  document.getElementById("motAchercher").innerText = nouvelleChaine;
   console.log(motAchercher);
   console.log(motArefaire);
 
