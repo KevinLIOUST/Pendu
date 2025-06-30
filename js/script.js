@@ -123,10 +123,6 @@ function utiliserLettre(lettre) {
       let newTabChaine = motArefaire.split(""); // Convertir la chaîne en tableau
       newTabChaine[i] = lettre; // Modifier la lettre à l'index donné
       motArefaire = newTabChaine.join(""); // Reconvertir en chaîne
-    } else {
-      let newTabChaine = motArefaire.split(""); // Convertir la chaîne en tableau
-      newTabChaine[i] = "_"; // Modifier la lettre à l'index donné
-      motArefaire = newTabChaine.join(""); // Reconvertir en chaîne
     }
   }
 
