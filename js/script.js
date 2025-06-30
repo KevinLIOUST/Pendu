@@ -148,7 +148,7 @@ function initialiserPartie() {
   motArefaire = "";
 
   // On tire un nombre aléatoire pour deviner un mot au joueur au hasard
-  nbAleatoire = Math.floor(Math.random() * 5);
+  nbAleatoire = Math.floor(Math.random() * tabMots.length);
 
   // La catégorie est choisie en fonction du mot tiré au hasard
   categorie = tabMots[nbAleatoire][0];
