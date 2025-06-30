@@ -66,7 +66,7 @@ function utiliserLettre(lettre) {
     if (motAchercher[i] === lettre) {
       let newTabChaine = motArefaire.split(""); // Convertir la chaîne en tableau
       newTabChaine[i] = lettre; // Modifier la lettre à l'index donné
-      let nouvelleChaine = newTabChaine.join(""); // Reconvertir en chaîne
+      motArefaire = newTabChaine.join(""); // Reconvertir en chaîne
       console.log(lettre);
       console.log(motAchercher[i]);
       console.log(motArefaire[i]);
@@ -75,9 +75,15 @@ function utiliserLettre(lettre) {
     }
   }
 
-  document.getElementById("motAchercher").innerText = nouvelleChaine;
+  document.getElementById("motAchercher").innerText = motArefaire;
   console.log(motAchercher);
   console.log(motArefaire);
+
+  let boutonAdesactiver = document.getElementById("btn" + lettre.toUpperCase());
+  boutonAdesactiver.disabled = true;
+  nbLettresManquantes--;
+  nbEssais--;
+  document.getElementById("nbEssais").innerText = nbEssais;
 
   if (nbEssais == 0 && nbLettresManquantes > 0) {
     document.getElementById("partiePerdueOuGagnee").innerText =
@@ -85,15 +91,7 @@ function utiliserLettre(lettre) {
   } else if (motAchercher == motArefaire) {
     document.getElementById("partiePerdueOuGagnee").innerText =
       "Vous avez gagné(e) la partie ! :)";
-  } else {
-    document.getElementById("partiePerdueOuGagnee").innerText =
-      "Partie en cours";
   }
-  let boutonAdesactiver = document.getElementById("btn" + lettre.toUpperCase());
-  boutonAdesactiver.disabled = true;
-  nbLettresManquantes--;
-  nbEssais--;
-  document.getElementById("nbEssais").innerText = nbEssais;
 }
 
 // Fonction pour initialiser une partie
@@ -113,7 +111,7 @@ function initialiserPartie() {
 
   for (let i = 0; i < motAchercher.length; i++) {
     if (motAchercher.charAt(i) == " ") {
-      motArefaire += "\u00A0";
+      motArefaire += " ";
     } else {
       motArefaire += "_";
     }
