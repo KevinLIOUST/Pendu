@@ -57,9 +57,9 @@ let tabMots = [
   ["logo de film", "warner home video", "15"],
   ["logo de film", "metro goldwyn mayer", "15"],
   ["logo de film", "paramount", "10"],
-  ["logo de film", "lionsgate", "10"],
-  ["logo de film", "gaumont", "10"],
-  ["logo de film", "universal", "10"],
+  ["logo de film", "lionsgate", "15"],
+  ["logo de film", "gaumont", "15"],
+  ["logo de film", "universal", "15"],
   ["logo de film", "universal international", "15"],
   ["logo de film", "aniplex", "10"],
   ["logo de film", "pikachu the movie", "15"],
@@ -129,6 +129,7 @@ function perduOuGagnePartie() {
   if (nbEssais == 0 && motArefaire != motAchercher) {
     document.getElementById("partiePerdueOuGagnee").innerText =
       "Vous avez perdu la partie ! ):";
+    document.getElementById("motAchercher").innerText = motAchercher;
     document.getElementById("textEntrer").disabled = true;
     document.getElementById("btnValider").disabled = true;
     disabledAllButtons();
