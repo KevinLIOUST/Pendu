@@ -1,78 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pendu</title>
 
-    <!-- Lien vers Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendu</title>
 
-    <!-- Lien vers les icônes Bootstrap -->
-    <!-- <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css"> -->
+  <!-- Lien vers Bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
-    <!-- Lien pour utiliser JavaScript pour les actions de l'utilisateur -->
-    <script
-      src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-      crossorigin="anonymous"
-    ></script>
+  <!-- Lien vers les icônes Bootstrap -->
+  <!-- <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css"> -->
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+  <!-- Lien pour utiliser JavaScript pour les actions de l'utilisateur -->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
 
-  <body>
-    <!-- Pour le header -->
-    <header class="d-block text-center m-3">
-      <h1 class="mb-3">Jeu du Pendu</h1>
-    </header>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-    <!-- Pour le contenu principal de la page -->
-    <main>
-      <div>
-        <div class="d-flex justify-content-center">
-          <button class="m-5" onclick="initialiserPartie()">
-            Lancer Partie
-          </button>
-        </div>
-        <p class="text-center">Nombre d'essais : <span id="nbEssais"></span></p>
-        <p class="text-center">Catégorie : <span id="categorie"></span></p>
-        <p class="text-center fs-1" id="motAchercher">_________</p>
-        <p class="text-center fs-1" id="partiePerdueOuGagnee"></p>
-        <div class="text-center m-5">
-          <button id="btnA" onclick="utiliserLettre('a')">a</button>
-          <button id="btnB" onclick="utiliserLettre('b')">b</button>
-          <button id="btnC" onclick="utiliserLettre('c')">c</button>
-          <button id="btnD" onclick="utiliserLettre('d')">d</button>
-          <button id="btnE" onclick="utiliserLettre('e')">e</button>
-          <button id="btnF" onclick="utiliserLettre('f')">f</button>
-          <button id="btnG" onclick="utiliserLettre('g')">g</button>
-          <button id="btnH" onclick="utiliserLettre('h')">h</button>
-          <button id="btnI" onclick="utiliserLettre('i')">i</button>
-          <button id="btnJ" onclick="utiliserLettre('j')">j</button>
-          <button id="btnK" onclick="utiliserLettre('k')">k</button>
-          <button id="btnL" onclick="utiliserLettre('l')">l</button>
-          <button id="btnM" onclick="utiliserLettre('m')">m</button>
-          <button id="btnN" onclick="utiliserLettre('n')">n</button>
-          <button id="btnO" onclick="utiliserLettre('o')">o</button>
-          <button id="btnP" onclick="utiliserLettre('p')">p</button>
-          <button id="btnQ" onclick="utiliserLettre('q')">q</button>
-          <button id="btnR" onclick="utiliserLettre('r')">r</button>
-          <button id="btnS" onclick="utiliserLettre('s')">s</button>
-          <button id="btnT" onclick="utiliserLettre('t')">t</button>
-          <button id="btnU" onclick="utiliserLettre('u')">u</button>
-          <button id="btnV" onclick="utiliserLettre('v')">v</button>
-          <button id="btnW" onclick="utiliserLettre('w')">w</button>
-          <button id="btnX" onclick="utiliserLettre('x')">x</button>
-          <button id="btnY" onclick="utiliserLettre('y')">y</button>
-          <button id="btnZ" onclick="utiliserLettre('z')">z</button>
-        </div>
+<body>
+  <!-- Pour le header -->
+  <header class="d-block text-center m-3">
+    <h1 class="mb-3">Jeu du Pendu</h1>
+  </header>
+
+  <!-- Pour le contenu principal de la page -->
+  <main>
+    <div>
+      <div class="d-flex justify-content-center">
+        <button class="m-5" onclick="initialiserPartie()">
+          Lancer Partie
+        </button>
       </div>
-    </main>
+      <p class="text-center">Nombre d'essais : <span id="nbEssais"></span></p>
+      <p class="text-center">Catégorie : <span id="categorie"></span></p>
+      <p class="text-center fs-1" id="motAchercher">_________</p>
+      <div class="d-flex justify-content-center m-5">
+        <input type="text" placeholder="Votre réponse" class="mx-5" disabled>
+        <button id="btnValider" onclick="validerReponse()" disabled>Valider</button>
+      </div>
+      <p class="text-center fs-1" id="partiePerdueOuGagnee"></p>
+      <div class="text-center m-5">
+        <button id="btnA" onclick="utiliserLettre('a')" disabled>a</button>
+        <button id="btnB" onclick="utiliserLettre('b')" disabled>b</button>
+        <button id="btnC" onclick="utiliserLettre('c')" disabled>c</button>
+        <button id="btnD" onclick="utiliserLettre('d')" disabled>d</button>
+        <button id="btnE" onclick="utiliserLettre('e')" disabled>e</button>
+        <button id="btnF" onclick="utiliserLettre('f')" disabled>f</button>
+        <button id="btnG" onclick="utiliserLettre('g')" disabled>g</button>
+        <button id="btnH" onclick="utiliserLettre('h')" disabled>h</button>
+        <button id="btnI" onclick="utiliserLettre('i')" disabled>i</button>
+        <button id="btnJ" onclick="utiliserLettre('j')" disabled>j</button>
+        <button id="btnK" onclick="utiliserLettre('k')" disabled>k</button>
+        <button id="btnL" onclick="utiliserLettre('l')" disabled>l</button>
+        <button id="btnM" onclick="utiliserLettre('m')" disabled>m</button>
+        <button id="btnN" onclick="utiliserLettre('n')" disabled>n</button>
+        <button id="btnO" onclick="utiliserLettre('o')" disabled>o</button>
+        <button id="btnP" onclick="utiliserLettre('p')" disabled>p</button>
+        <button id="btnQ" onclick="utiliserLettre('q')" disabled>q</button>
+        <button id="btnR" onclick="utiliserLettre('r')" disabled>r</button>
+        <button id="btnS" onclick="utiliserLettre('s')" disabled>s</button>
+        <button id="btnT" onclick="utiliserLettre('t')" disabled>t</button>
+        <button id="btnU" onclick="utiliserLettre('u')" disabled>u</button>
+        <button id="btnV" onclick="utiliserLettre('v')" disabled>v</button>
+        <button id="btnW" onclick="utiliserLettre('w')" disabled>w</button>
+        <button id="btnX" onclick="utiliserLettre('x')" disabled>x</button>
+        <button id="btnY" onclick="utiliserLettre('y')" disabled>y</button>
+        <button id="btnZ" onclick="utiliserLettre('z')" disabled>z</button>
+      </div>
+    </div>
+  </main>
 
-    <script src="js/script.js"></script>
-  </body>
+  <script src="js/script.js"></script>
+</body>
+
 </html>

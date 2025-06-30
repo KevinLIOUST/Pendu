@@ -57,8 +57,28 @@ let nbEssais = "";
 // Nombre d'underscores à afficher pour trouver le mot
 let nbUnderscores = 0;
 
-// Le nombre de lettres manquantes pour trouver le mot et gagner la partie
-let nbLettresManquantes = 0;
+// Fonction pour utiliser la zone de texte pour que le joueur puisse donner sa réponse avec le bouton valider
+function validerReponse() {
+  if (document.getElementById("textEntrer").value == motAchercher) {
+    document.getElementById("motAchercher").innerText = motAchercher;
+    nbEssais--;
+    document.getElementById("nbEssais").innerText = nbEssais;
+  } else {
+    nbEssais--;
+    document.getElementById("nbEssais").innerText = nbEssais
+  }
+}
+
+// Fonction pour savoir si le joueur a gagné la partie, soit perdu la partie
+function perduOuGagnePartie() {
+  if (nbEssais == 0 && motArefaire != motAchercher) {
+    document.getElementById("partiePerdueOuGagnee").innerText =
+      "Vous avez perdue la partie ! ):";
+  } else if (motAchercher == motArefaire) {
+    document.getElementById("partiePerdueOuGagnee").innerText =
+      "Vous avez gagné(e) la partie ! :)";
+  }
+}
 
 // Fonction pour utiliser une lettre
 function utiliserLettre(lettre) {
@@ -81,17 +101,10 @@ function utiliserLettre(lettre) {
 
   let boutonAdesactiver = document.getElementById("btn" + lettre.toUpperCase());
   boutonAdesactiver.disabled = true;
-  nbLettresManquantes--;
   nbEssais--;
   document.getElementById("nbEssais").innerText = nbEssais;
 
-  if (nbEssais == 0 && nbLettresManquantes > 0) {
-    document.getElementById("partiePerdueOuGagnee").innerText =
-      "Vous avez perdue la partie ! ):";
-  } else if (motAchercher == motArefaire) {
-    document.getElementById("partiePerdueOuGagnee").innerText =
-      "Vous avez gagné(e) la partie ! :)";
-  }
+  perduOuGagnePartie();
 }
 
 // Fonction pour initialiser une partie
@@ -129,9 +142,6 @@ function initialiserPartie() {
 
   // Pour afficher le nombre d'underscores pour trouver le mot
   nbUnderscores = motAchercher.length;
-
-  // Pour récupérer le nombre de lettres manquantes pour trouver le mot
-  nbLettresManquantes = motAchercher.length;
 
   // Pour remettre à 0 les underscores du mot à trouver
   document.getElementById("motAchercher").innerText = "";
