@@ -57,15 +57,44 @@ let nbEssais = "";
 // Nombre d'underscores à afficher pour trouver le mot
 let nbUnderscores = 0;
 
+// Fonction pour désactiver tous les boutons en temps voulu
+function disabledAllButtons() {
+  for (let i = 0; i < tabLettres.length; i++) {
+    let boutonAdesactiver = document.getElementById(
+      "btn" + tabLettres[i].toUpperCase()
+    );
+    boutonAdesactiver.disabled = true;
+  }
+}
+
+// Fonction pour activer tous les boutons en temps voulu
+function activateAllButtons() {
+  for (let i = 0; i < tabLettres.length; i++) {
+    let boutonAdesactiver = document.getElementById(
+      "btn" + tabLettres[i].toUpperCase()
+    );
+    boutonAdesactiver.disabled = false;
+  }
+}
+
 // Fonction pour utiliser la zone de texte pour que le joueur puisse donner sa réponse avec le bouton valider
 function validerReponse() {
   if (document.getElementById("textEntrer").value == motAchercher) {
     document.getElementById("motAchercher").innerText = motAchercher;
+    document.getElementById("partiePerdueOuGagnee").innerText =
+      "Vous avez gagné la partie ! ):";
+    disabledAllButtons();
+    document.getElementById("textEntrer").disabled = true;
+    document.getElementById("btnValider").disabled = true;
     nbEssais--;
     document.getElementById("nbEssais").innerText = nbEssais;
   } else {
     nbEssais--;
+    document.getElementById("textEntrer").disabled = true;
+    document.getElementById("btnValider").disabled = true;
     document.getElementById("nbEssais").innerText = nbEssais
+    document.getElementById("partiePerdueOuGagnee").innerText =
+      "Vous avez perdu la partie ! ):";
   }
 }
 
@@ -73,10 +102,16 @@ function validerReponse() {
 function perduOuGagnePartie() {
   if (nbEssais == 0 && motArefaire != motAchercher) {
     document.getElementById("partiePerdueOuGagnee").innerText =
-      "Vous avez perdue la partie ! ):";
+      "Vous avez perdu la partie ! ):";
+    document.getElementById("textEntrer").disabled = true;
+    document.getElementById("btnValider").disabled = true;
+    disabledAllButtons();
   } else if (motAchercher == motArefaire) {
     document.getElementById("partiePerdueOuGagnee").innerText =
       "Vous avez gagné(e) la partie ! :)";
+    document.getElementById("textEntrer").disabled = true;
+    document.getElementById("btnValider").disabled = true;
+    disabledAllButtons();
   }
 }
 
@@ -146,22 +181,13 @@ function initialiserPartie() {
   // Pour remettre à 0 les underscores du mot à trouver
   document.getElementById("motAchercher").innerText = "";
 
-  //   for (let i = 0; i < nbUnderscores; i++) {
-  //     if (motAchercher.charAt(i) == " ") {
-  //       document.getElementById("motAchercher").innerText += "\u00A0";
-  //     } else {
-  //       document.getElementById("motAchercher").innerText += "_";
-  //     }
-  //   }
   document.getElementById("motAchercher").innerText = motArefaire;
 
   document.getElementById("partiePerdueOuGagnee").innerText =
     "Partie en cours...";
 
-  for (let i = 0; i < tabLettres.length; i++) {
-    let boutonAdesactiver = document.getElementById(
-      "btn" + tabLettres[i].toUpperCase()
-    );
-    boutonAdesactiver.disabled = false;
-  }
+  document.getElementById("textEntrer").disabled = false;
+  document.getElementById("btnValider").disabled = false;
+
+  activateAllButtons();
 }
