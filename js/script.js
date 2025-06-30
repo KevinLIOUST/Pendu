@@ -89,12 +89,9 @@ function validerReponse() {
     nbEssais--;
     document.getElementById("nbEssais").innerText = nbEssais;
   } else {
+    perduOuGagnePartie();
     nbEssais--;
-    document.getElementById("textEntrer").disabled = true;
-    document.getElementById("btnValider").disabled = true;
-    document.getElementById("nbEssais").innerText = nbEssais
-    document.getElementById("partiePerdueOuGagnee").innerText =
-      "Vous avez perdu la partie ! ):";
+    document.getElementById("nbEssais").innerText = nbEssais;
   }
 }
 
@@ -117,22 +114,23 @@ function perduOuGagnePartie() {
 
 // Fonction pour utiliser une lettre
 function utiliserLettre(lettre) {
+
+  // On regarde si la lettre que le joueur a choisi est dans le mot à deviner.
+  // Si la lettre est dans le mot à deviner, alors on modifie la chaine et on l'affiche au joueur.
+  // Sinon, on fait rien.
   for (let i = 0; i < motAchercher.length; i++) {
     if (motAchercher[i] === lettre) {
       let newTabChaine = motArefaire.split(""); // Convertir la chaîne en tableau
       newTabChaine[i] = lettre; // Modifier la lettre à l'index donné
       motArefaire = newTabChaine.join(""); // Reconvertir en chaîne
-      console.log(lettre);
-      console.log(motAchercher[i]);
-      console.log(motArefaire[i]);
     } else {
-      motArefaire[i] = "z";
+      let newTabChaine = motArefaire.split(""); // Convertir la chaîne en tableau
+      newTabChaine[i] = "_"; // Modifier la lettre à l'index donné
+      motArefaire = newTabChaine.join(""); // Reconvertir en chaîne
     }
   }
 
   document.getElementById("motAchercher").innerText = motArefaire;
-  console.log(motAchercher);
-  console.log(motArefaire);
 
   let boutonAdesactiver = document.getElementById("btn" + lettre.toUpperCase());
   boutonAdesactiver.disabled = true;
@@ -144,19 +142,21 @@ function utiliserLettre(lettre) {
 
 // Fonction pour initialiser une partie
 function initialiserPartie() {
+
+  // Initialisation des variables pour les mots
   motAchercher = "";
   motArefaire = "";
 
-  // Initialisation de la partie
+  // On tire un nombre aléatoire pour deviner un mot au joueur au hasard
   nbAleatoire = Math.floor(Math.random() * 5);
-  // console.log(nbAleatoire);
 
+  // La catégorie est choisie en fonction du mot tiré au hasard
   categorie = tabMots[nbAleatoire][0];
-  // console.log(categorie);
 
+  // Le mot à faire deviner au joueur avec le nombre tiré au hasard
   motAchercher = tabMots[nbAleatoire][1];
-  // console.log(motAchercher);
 
+  // Préparation du mot à refaire avec les espaces inclus
   for (let i = 0; i < motAchercher.length; i++) {
     if (motAchercher.charAt(i) == " ") {
       motArefaire += " ";
@@ -164,10 +164,8 @@ function initialiserPartie() {
       motArefaire += "_";
     }
   }
-  console.log(motArefaire);
 
   nbEssais = parseInt(tabMots[nbAleatoire][2]);
-  // console.log(nbEssais);
 
   // Affichage du nombre d'essais
   document.getElementById("nbEssais").innerText = nbEssais;
@@ -181,13 +179,19 @@ function initialiserPartie() {
   // Pour remettre à 0 les underscores du mot à trouver
   document.getElementById("motAchercher").innerText = "";
 
+  // Affichage du mot à refaire au fur et à mesure de la partie
   document.getElementById("motAchercher").innerText = motArefaire;
 
+  // Affichage de l'état de la partie
   document.getElementById("partiePerdueOuGagnee").innerText =
     "Partie en cours...";
 
+  // Rendre actif le bouton pour valider sa réponse au lancement du jeu
   document.getElementById("textEntrer").disabled = false;
+
+  // Rendre actif la zone de texte au lancement du jeu
   document.getElementById("btnValider").disabled = false;
 
+  // Activer tous les boutons au lancement du jeu
   activateAllButtons();
 }
