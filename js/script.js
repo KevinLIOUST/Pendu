@@ -36,7 +36,7 @@ let tabMots = [
   ["jeu vidéo", "horizon zero dawn", "20"],
   ["film", "matrix", "10"],
   ["série", "the walking dead", "15"],
-  ["youtuber", "squeezie", "10"],
+  ["youtuber", "squeezie", "10"]
 ];
 
 // Le nombre aléatoire tiré à chaque début de game
@@ -70,16 +70,16 @@ function disabledAllButtons() {
 // Fonction pour activer tous les boutons en temps voulu
 function activateAllButtons() {
   for (let i = 0; i < tabLettres.length; i++) {
-    let boutonAdesactiver = document.getElementById(
+    let boutonAactiver = document.getElementById(
       "btn" + tabLettres[i].toUpperCase()
     );
-    boutonAdesactiver.disabled = false;
+    boutonAactiver.disabled = false;
   }
 }
 
 // Fonction pour utiliser la zone de texte pour que le joueur puisse donner sa réponse avec le bouton valider
 function validerReponse() {
-  if (document.getElementById("textEntrer").value == motAchercher) {
+  if (document.getElementById("textEntrer").value.toLowerCase() == motAchercher) {
     document.getElementById("motAchercher").innerText = motAchercher;
     document.getElementById("partiePerdueOuGagnee").innerText =
       "Vous avez gagné la partie ! ):";
@@ -89,9 +89,9 @@ function validerReponse() {
     nbEssais--;
     document.getElementById("nbEssais").innerText = nbEssais;
   } else {
-    perduOuGagnePartie();
     nbEssais--;
     document.getElementById("nbEssais").innerText = nbEssais;
+    perduOuGagnePartie();
   }
 }
 
